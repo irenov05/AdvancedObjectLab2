@@ -1,14 +1,14 @@
 /**
- * Holds the King's Attributes, constructs, and paramenters.
- * Can move in any direction by 1 space.
+ * Holds the Bishop's Attributes, constructs, and paramenters.
+ * Can move only diagonally.
  * 
  * @author Ismael Renova
  * @version 1.0
  * @since 9/15/26
  * 
- * Change logs: Adding missing documentation, attributes, and fixed verifyTarget.
+ * Change logs: Fixing enumarated PieceType. Checking if function reads diagonally.
  */
-public class King {
+public class Bishop {
 
     // Stores the name/type of the chess piece.
     private PieceType pieceName;
@@ -16,28 +16,28 @@ public class King {
     // Stores the color of the chess piece.
     private String color;
 
-    // Stores the current column of the piece.
+    // Stores the current column.
     private char col;
 
-    // Stores the current row of the piece.
+    // Stores the current row.
     private int row;
 
     /**
      * Empty constructor.
      */
-    public King() {
-        pieceName = PieceType.KING;
+    public Bishop() {
+        pieceName = PieceType.BISHOP;
     }
 
     /**
-     * Creates a King with its starting information.
+     * Creates a Bishop with its starting information.
      *
      * @param pieceName name/type of the piece
      * @param color color of the piece
      * @param col starting column
      * @param row starting row
      */
-    public King(PieceType pieceName, String color, char col, int row) {
+    public Bishop(PieceType pieceName, String color, char col, int row) {
         this.pieceName = pieceName;
         this.color = color;
         this.col = col;
@@ -45,16 +45,16 @@ public class King {
     }
 
     /**
-     * Gets the color of the King.
+     * Gets the color of the Bishop.
      *
-     * @return color of the King
+     * @return color of the Bishop
      */
     public String getColor() {
         return color;
     }
 
     /**
-     * Gets the current column of the King.
+     * Gets the current column.
      *
      * @return current column
      */
@@ -63,7 +63,7 @@ public class King {
     }
 
     /**
-     * Gets the current row of the King.
+     * Gets the current row.
      *
      * @return current row
      */
@@ -72,7 +72,7 @@ public class King {
     }
 
     /**
-     * Changes the current column of the King.
+     * Changes the current column.
      *
      * @param col new column
      */
@@ -81,7 +81,7 @@ public class King {
     }
 
     /**
-     * Changes the current row of the King.
+     * Changes the current row.
      *
      * @param row new row
      */
@@ -90,29 +90,21 @@ public class King {
     }
 
     /**
-     * Checks if the King can move to the target position.
+     * Checks if the Bishop can move to the target position.
      *
      * @param newCol target column
      * @param newRow target row
      * @return true if the move is valid, otherwise false
      */
     public boolean verifyTarget(char newCol, int newRow) {
-
-        // Finds the difference between the current and target column and row.
+        //Finds the difference between the current and Target column and Row.
         int colDifference = Math.abs(col - newCol);
         int rowDifference = Math.abs(row - newRow);
-
-        // Checks if the King moved at least one space.
-        if (colDifference == 0 && rowDifference == 0) {
-            return false;
-        }
-
-        // Checks if the King moved only one space in any direction.
-        if (colDifference <= 1 && rowDifference <= 1) {
+        // Checks if moving diagonally while checks if it not same position.
+        if (colDifference == rowDifference && colDifference != 0) {
             return true;
         }
 
-        // The move is not valid.
         return false;
     }
 }
